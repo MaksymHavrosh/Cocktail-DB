@@ -10,6 +10,8 @@
 		24019FA924B87B3C0033AF4A /* Drink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24019FA824B87B3C0033AF4A /* Drink.swift */; };
 		24019FAC24B87B960033AF4A /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24019FAB24B87B960033AF4A /* ServerManager.swift */; };
 		24019FAF24B87EA70033AF4A /* DrinkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24019FAE24B87EA70033AF4A /* DrinkTableViewCell.swift */; };
+		24019FB224B8D0720033AF4A /* FilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24019FB124B8D0720033AF4A /* FilterTableViewCell.swift */; };
+		24019FB424B8D6140033AF4A /* FiltersTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24019FB324B8D6140033AF4A /* FiltersTableViewController.swift */; };
 		245FED8424B86E6D00F068D1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FED8324B86E6D00F068D1 /* AppDelegate.swift */; };
 		245FED8624B86E6D00F068D1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245FED8524B86E6D00F068D1 /* SceneDelegate.swift */; };
 		245FED8B24B86E6D00F068D1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 245FED8924B86E6D00F068D1 /* Main.storyboard */; };
@@ -23,6 +25,8 @@
 		24019FA824B87B3C0033AF4A /* Drink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drink.swift; sourceTree = "<group>"; };
 		24019FAB24B87B960033AF4A /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		24019FAE24B87EA70033AF4A /* DrinkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkTableViewCell.swift; sourceTree = "<group>"; };
+		24019FB124B8D0720033AF4A /* FilterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableViewCell.swift; sourceTree = "<group>"; };
+		24019FB324B8D6140033AF4A /* FiltersTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersTableViewController.swift; sourceTree = "<group>"; };
 		245FED8024B86E6D00F068D1 /* Cocktail DB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Cocktail DB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		245FED8324B86E6D00F068D1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		245FED8524B86E6D00F068D1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				24019FAE24B87EA70033AF4A /* DrinkTableViewCell.swift */,
+				24019FB124B8D0720033AF4A /* FilterTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -96,7 +101,7 @@
 				245FED8324B86E6D00F068D1 /* AppDelegate.swift */,
 				245FED8524B86E6D00F068D1 /* SceneDelegate.swift */,
 				24019FAD24B87B9C0033AF4A /* Managers */,
-				2467D11924B872920048923D /* Controllers */,
+				2467D11924B872920048923D /* ViewControllers */,
 				24019FAA24B87B490033AF4A /* Models */,
 				24019FB024B87EAE0033AF4A /* Cells */,
 				245FED8924B86E6D00F068D1 /* Main.storyboard */,
@@ -107,12 +112,13 @@
 			path = "Cocktail DB";
 			sourceTree = "<group>";
 		};
-		2467D11924B872920048923D /* Controllers */ = {
+		2467D11924B872920048923D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
 				2467D11724B872590048923D /* DrinksTableViewController.swift */,
+				24019FB324B8D6140033AF4A /* FiltersTableViewController.swift */,
 			);
-			path = Controllers;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		3F1CDA500C2CEF69F73E1878 /* Pods */ = {
@@ -252,6 +258,8 @@
 				245FED8424B86E6D00F068D1 /* AppDelegate.swift in Sources */,
 				24019FA924B87B3C0033AF4A /* Drink.swift in Sources */,
 				24019FAF24B87EA70033AF4A /* DrinkTableViewCell.swift in Sources */,
+				24019FB224B8D0720033AF4A /* FilterTableViewCell.swift in Sources */,
+				24019FB424B8D6140033AF4A /* FiltersTableViewController.swift in Sources */,
 				245FED8624B86E6D00F068D1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

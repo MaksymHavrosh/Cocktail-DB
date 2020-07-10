@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0W4-vQ-eiq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ATh-zf-Xa5">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Drinks Table View Controller-->
+        <!--Drinks-->
         <scene sceneID="pF4-4j-NGh">
             <objects>
                 <tableViewController id="0W4-vQ-eiq" customClass="DrinksTableViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
@@ -55,10 +55,93 @@
                             <outlet property="delegate" destination="0W4-vQ-eiq" id="jS0-32-ws1"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" title="Drinks" id="gET-ea-qbY">
+                        <barButtonItem key="rightBarButtonItem" image="filterButton" id="TBM-71-KaS">
+                            <connections>
+                                <segue destination="o6J-4d-lLq" kind="show" id="yYG-qg-Cxu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q2O-t1-uDV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="508.69565217391306" y="126.5625"/>
         </scene>
+        <!--Filters-->
+        <scene sceneID="Z1p-Ig-Oyo">
+            <objects>
+                <tableViewController id="o6J-4d-lLq" customClass="FiltersTableViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ypT-T1-Qs6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterTableViewCell" rowHeight="55" id="bFN-Gu-w8s" customClass="FilterTableViewCell" customModule="Cocktail_DB" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="55"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bFN-Gu-w8s" id="8z6-ia-HEq">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivc-Rt-zhS">
+                                            <rect key="frame" x="20" y="17" width="278" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="filterOn" translatesAutoresizingMaskIntoConstraints="NO" id="61k-n5-N6U">
+                                            <rect key="frame" x="361" y="11" width="33" height="33"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="61k-n5-N6U" secondAttribute="height" multiplier="1:1" id="zVP-Dt-PbC"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="61k-n5-N6U" firstAttribute="bottom" secondItem="8z6-ia-HEq" secondAttribute="bottomMargin" id="Mba-jO-jKR"/>
+                                        <constraint firstItem="61k-n5-N6U" firstAttribute="top" secondItem="8z6-ia-HEq" secondAttribute="topMargin" id="Y4k-7e-BsW"/>
+                                        <constraint firstItem="61k-n5-N6U" firstAttribute="trailing" secondItem="8z6-ia-HEq" secondAttribute="trailingMargin" id="m55-G1-wSw"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkbox" destination="61k-n5-N6U" id="buh-cE-oJl"/>
+                                    <outlet property="filterName" destination="ivc-Rt-zhS" id="LhS-9s-SJ9"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="o6J-4d-lLq" id="eGv-nF-jzA"/>
+                            <outlet property="delegate" destination="o6J-4d-lLq" id="udD-wS-aim"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Filters" id="5zh-vf-jUg">
+                        <barButtonItem key="leftBarButtonItem" image="backButton" id="Dya-Zl-fLx"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OTb-tM-nx1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1434.7826086956522" y="126.5625"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mgf-RN-2pn">
+            <objects>
+                <navigationController id="ATh-zf-Xa5" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0WZ-Hp-pqg">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="0W4-vQ-eiq" kind="relationship" relationship="rootViewController" id="PeO-8U-bam"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="At1-xe-e9w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-442" y="127"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="backButton" width="15" height="13.5"/>
+        <image name="filterButton" width="15" height="15"/>
+        <image name="filterOn" width="15" height="15"/>
+    </resources>
 </document>

@@ -11,8 +11,8 @@ import AlamofireImage
 
 class DrinksTableViewController: UITableViewController {
     
-    var drinks: [Drink]?
-    var titelsForSection = ["Ordinary Drink"]
+    private var drinks: [Drink]?
+    private var titelsForSection = ["Ordinary Drink"]
     
     //MARK: - LifeCycle
 
@@ -59,7 +59,7 @@ class DrinksTableViewController: UITableViewController {
 private extension DrinksTableViewController {
     
     func getDrinksFromServer() {
-        ServerManager().getDrinks(success: { (drinks) in
+        ServerManager().getDrinks(params: ["c" : "Ordinary Drink"], success: { (drinks) in
             self.drinks = drinks
             self.tableView.reloadData()
         })

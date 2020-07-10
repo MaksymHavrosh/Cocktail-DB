@@ -11,8 +11,7 @@ import Alamofire
 
 class ServerManager {
     
-    func getDrinks(success: @escaping ([Drink]) -> Void ) {
-        let params: [String : Any] = ["c" : "Ordinary Drink"]
+    func getDrinks(params: [String : Any], success: @escaping ([Drink]) -> Void ) {
         
         AF.request("https://www.thecocktaildb.com/api/json/v1/1/filter.php?",
                    method: .get,
