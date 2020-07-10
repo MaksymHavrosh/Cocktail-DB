@@ -8,5 +8,6 @@ target 'Cocktail DB' do
   # Pods for Cocktail DB
 
   pod 'Alamofire'
+  pod 'AlamofireImage'
 
 end
