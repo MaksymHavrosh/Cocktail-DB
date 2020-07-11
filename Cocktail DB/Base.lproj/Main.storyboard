@@ -29,7 +29,7 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="19q-6w-3OH">
-                                            <rect key="frame" x="140" y="67" width="254" height="0.0"/>
+                                            <rect key="frame" x="152" y="67" width="242" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -39,7 +39,7 @@
                                         <constraint firstItem="19q-6w-3OH" firstAttribute="trailing" secondItem="Oe2-3C-qfT" secondAttribute="trailingMargin" id="LEm-0O-N6g"/>
                                         <constraint firstItem="19q-6w-3OH" firstAttribute="centerY" secondItem="Oe2-3C-qfT" secondAttribute="centerY" id="WOn-zE-GSc"/>
                                         <constraint firstItem="dQ2-XN-ZNd" firstAttribute="width" secondItem="Oe2-3C-qfT" secondAttribute="width" multiplier="0.270531" id="gVt-xO-axe"/>
-                                        <constraint firstItem="19q-6w-3OH" firstAttribute="leading" secondItem="dQ2-XN-ZNd" secondAttribute="trailing" constant="8" id="j78-XJ-Ef5"/>
+                                        <constraint firstItem="19q-6w-3OH" firstAttribute="leading" secondItem="dQ2-XN-ZNd" secondAttribute="trailing" constant="20" id="j78-XJ-Ef5"/>
                                         <constraint firstItem="dQ2-XN-ZNd" firstAttribute="top" secondItem="Oe2-3C-qfT" secondAttribute="topMargin" id="rPT-Xd-ER8"/>
                                         <constraint firstItem="dQ2-XN-ZNd" firstAttribute="leading" secondItem="Oe2-3C-qfT" secondAttribute="leadingMargin" id="skb-WQ-8Ic"/>
                                     </constraints>
@@ -115,7 +115,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Filters" id="5zh-vf-jUg">
-                        <barButtonItem key="leftBarButtonItem" image="backButton" id="Dya-Zl-fLx"/>
+                        <barButtonItem key="leftBarButtonItem" image="backButton" id="Dya-Zl-fLx">
+                            <connections>
+                                <action selector="backButton:" destination="o6J-4d-lLq" id="FkX-xg-ZxX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OTb-tM-nx1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

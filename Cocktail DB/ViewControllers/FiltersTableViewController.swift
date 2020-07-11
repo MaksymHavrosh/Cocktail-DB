@@ -43,5 +43,14 @@ class FiltersTableViewController: UITableViewController {
             return cell
         }
     }
+    
+}
 
+//MARK: - Actions
+
+private extension FiltersTableViewController {
+    
+    @IBAction func backButton(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
 }

@@ -28,7 +28,6 @@ class ServerManager {
                             let drink = Drink(dict: drinkDictionary)
                             drinksArray.append(drink)
                         }
-                        
                         success(drinksArray)
                         
                     case .failure(let error):
