@@ -6,7 +6,7 @@
 //  Copyright © 2020 MG. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct Drink {
     
@@ -18,8 +18,6 @@ struct Drink {
         
         self.drinkName = dict["strDrink"] as? String ?? "No id"
         self.idDrink = dict["idDrink"] as? String ?? "No name"
-        self.urlImage = URL(string: dict["strDrinkThumb"] as? String ?? "No URL")
-        
+        self.urlImage = URL(string: dict["strDrinkThumb"] as? String ?? "No URL") 
     }
-
 }

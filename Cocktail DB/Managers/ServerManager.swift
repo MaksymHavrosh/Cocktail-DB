@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class ServerManager {
+struct ServerManager {
     
     func getDrinks(params: [String : Any], success: @escaping ([Drink]) -> Void ) {
         
@@ -35,5 +35,34 @@ class ServerManager {
                     }
         }
     }
-
+    
+    func getFilters(success: @escaping ([String]) -> Void) {
+         
+        AF.request("https://www.thecocktaildb.com/api/json/v1/1/list.php?",
+                   method: .get,
+                   parameters: ["c" : "list"],
+                   encoding: URLEncoding.default).responseJSON { (response) in
+                    
+                    switch response.result {
+                    case .success(let value):
+                        
+                        guard let dictionary = value as? [String: Any], let objectsArray = dictionary["drinks"] as? [[String : Any]]  else { return }
+                        var filtersArray = [String]()
+                        
+                        for filtersDictionary in objectsArray {
+                            let filter = filtersDictionary as [String : Any]
+                            
+                            if let filterValue = filter["strCategory"] as? String {
+                                filtersArray.append(filterValue)
+                            }
+                        }
+                        success(filtersArray)
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+        }
+        
+    }
+    
 }

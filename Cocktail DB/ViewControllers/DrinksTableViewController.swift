@@ -11,29 +11,33 @@ import AlamofireImage
 
 class DrinksTableViewController: UITableViewController {
     
-    private let heigthForRow: CGFloat = 134
-    
+    private var params = [[String : String]]()
+    private var paramsName = [String]()
+    private var drinksSections = [[Drink]]()
     private var drinks: [Drink]?
-    private var drinksForScreen = [Drink]()
-    private let limitDrinksOnScreen = 15
+    private var sectionOnScreen = [Int]()
     
-    private var titelsForSection = ["Ordinary Drink"]
+    private let heigthForRow: CGFloat = 134
     
     //MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        getDrinksFromServer()
+        getFiltersFromServer()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getDrinksFromServer(for: 0, with: params.isEmpty ? [["c" : "Ordinary Drink"]] : params)
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        titelsForSection.count
+        paramsName.count == 0 ? 1 : paramsName.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        titelsForSection[section]
+        paramsName.count == 0 ? "Ordinary Drink" : paramsName[section]
     }
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -45,18 +49,40 @@ class DrinksTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        drinksForScreen.count
+        
+        if drinksSections.count < section + 1 || drinksSections.isEmpty {
+            return 0
+        } else if !drinksSections[section].isEmpty {
+            return drinksSections[section].count
+        } else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: DrinkTableViewCell.self), for: indexPath) as! DrinkTableViewCell
-        let drink = drinksForScreen[indexPath.row]
+        guard !drinksSections.isEmpty else { return cell }
+        let drink = drinksSections[indexPath.section][indexPath.row]
         cell.drinkName.text = drink.drinkName
         
         if let url = drink.urlImage {
+            cell.drinkImage.image = UIImage(named: "defaultIcon")
             cell.drinkImage?.af.setImage(withURL: url)
         }
         return cell
+    }
+    
+}
+
+//MARK: - Segue
+
+extension DrinksTableViewController {
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? FiltersTableViewController {
+            vc.delegate = self
+        }
     }
 }
 
@@ -65,10 +91,29 @@ class DrinksTableViewController: UITableViewController {
 extension DrinksTableViewController {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let lastItemOnScreen = drinksForScreen.count - 1
-        if indexPath.row == lastItemOnScreen, !drinks!.isEmpty {
-            loadMoreData()
+        
+        guard !drinksSections.isEmpty else { return }
+        let lastItemOnScreen = drinksSections[indexPath.section].count - 1
+        guard indexPath.row == lastItemOnScreen, !params.isEmpty, !sectionOnScreen.contains(indexPath.section + 1) else { return }
+        guard indexPath.section < params.count else { return }
+        getDrinksFromServer(for: indexPath.section + 1, with: params)
+    }
+}
+
+//MARK: - FiltersTableViewControllerDelegate
+
+extension DrinksTableViewController: FiltersTableViewControllerDelegate {
+    
+    func dismissFiltersTableViewController(controller: FiltersTableViewController) {
+        
+        paramsName = controller.selectedFilters
+        drinksSections.removeAll()
+        sectionOnScreen.removeAll()
+        params.removeAll()
+        for name in paramsName {
+            params.append(["c" : name])
         }
+        tableView.reloadData()
     }
 }
 
@@ -76,22 +121,24 @@ extension DrinksTableViewController {
 
 private extension DrinksTableViewController {
     
-    func getDrinksFromServer() {
-        ServerManager().getDrinks(params: ["c" : "Ordinary Drink"], success: { (drinks) in
-            self.drinks = drinks
-            self.loadMoreData()
+    func getDrinksFromServer(for section: Int, with params: [[String : Any]]) {
+        guard params.count > section else { return }
+        
+        ServerManager().getDrinks(params: params[section], success: { (drinks) in
+            self.drinksSections.append(drinks)
+            self.sectionOnScreen.append(section)
+            self.tableView.reloadData()
         })
     }
     
-    func loadMoreData() {
-        if let drinks = drinks {
-            let numberOfRepetitions = drinks.count >= limitDrinksOnScreen ? limitDrinksOnScreen : drinks.count
-            
-            for i in 0..<numberOfRepetitions {
-                drinksForScreen.append(drinks[i])
-                self.drinks?.remove(at: 0)
+    func getFiltersFromServer() {
+        
+        ServerManager().getFilters { (filterNames) in
+            self.paramsName = filterNames
+            for name in self.paramsName {
+                self.params.append(["c" : name])
             }
+            self.tableView.reloadData()
         }
-        tableView.reloadData()
     }
 }

@@ -9,7 +9,7 @@
         <!--Drinks-->
         <scene sceneID="pF4-4j-NGh">
             <objects>
-                <tableViewController id="0W4-vQ-eiq" customClass="DrinksTableViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DrinksTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0W4-vQ-eiq" customClass="DrinksTableViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="43a-FS-Kad">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -22,7 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="134"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQ2-XN-ZNd">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultIcon" translatesAutoresizingMaskIntoConstraints="NO" id="dQ2-XN-ZNd">
                                             <rect key="frame" x="20" y="11" width="112" height="112"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="dQ2-XN-ZNd" secondAttribute="height" multiplier="1:1" id="FIW-nB-k17"/>
@@ -70,7 +70,7 @@
         <!--Filters-->
         <scene sceneID="Z1p-Ig-Oyo">
             <objects>
-                <tableViewController id="o6J-4d-lLq" customClass="FiltersTableViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="FiltersTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="o6J-4d-lLq" customClass="FiltersTableViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ypT-T1-Qs6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -83,7 +83,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="55"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivc-Rt-zhS">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ivc-Rt-zhS">
                                             <rect key="frame" x="20" y="17" width="278" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -145,6 +145,7 @@
     </scenes>
     <resources>
         <image name="backButton" width="15" height="13.5"/>
+        <image name="defaultIcon" width="242" height="256"/>
         <image name="filterButton" width="15" height="15"/>
         <image name="filterOn" width="15" height="15"/>
     </resources>
