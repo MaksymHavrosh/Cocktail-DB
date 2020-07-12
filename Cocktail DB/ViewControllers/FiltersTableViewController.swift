@@ -150,6 +150,7 @@ private extension FiltersTableViewController {
 private extension FiltersTableViewController {
     
     @IBAction func backButton(_ sender: UIBarButtonItem) {
+        delegate?.dismissFiltersTableViewController(controller: self)
         navigationController?.popViewController(animated: true)
     }
 }
