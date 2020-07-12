@@ -14,16 +14,16 @@ protocol FiltersTableViewControllerDelegate {
 
 class FiltersTableViewController: UITableViewController {
     
+    var delegate: FiltersTableViewControllerDelegate?
+    
+    private var deselectedFilters = [String]()
+    var selectedFilters = [String]()
     private var filters = [String]() {
         didSet {
             selectedFilters = filters
             deselectedFilters = filters
         }
     }
-    private var deselectedFilters = [String]()
-    var selectedFilters = [String]()
-    
-    var delegate: FiltersTableViewControllerDelegate?
     
     //MARK: - LifeCycle
 
@@ -44,11 +44,12 @@ class FiltersTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if indexPath.row < filters.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FilterTableViewCell.self), for: indexPath) as! FilterTableViewCell
             cell.filterName.text = filters[indexPath.row]
-            
             return cell
+            
         } else { 
             return createApplyCell()
         }
@@ -68,7 +69,6 @@ extension FiltersTableViewController {
                 showAlertView()
                 return
             }
-            
             delegate?.dismissFiltersTableViewController(controller: self)
             navigationController?.popViewController(animated: true)
             

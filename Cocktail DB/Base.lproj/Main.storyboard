@@ -3,9 +3,60 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Random View Controller-->
+        <scene sceneID="xUK-b5-pe1">
+            <objects>
+                <viewController storyboardIdentifier="RandomViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AYs-U6-MEe" customClass="RandomViewController" customModule="Cocktail_DB" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lgg-ti-d67">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q1y-tV-L9c">
+                                <rect key="frame" x="0.0" y="28" width="414" height="762"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqf-tY-pFu">
+                                <rect key="frame" x="20" y="20" width="374" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tx7-WY-ECR">
+                                <rect key="frame" x="20" y="798" width="374" height="0.0"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ypz-0F-Oss" firstAttribute="trailing" secondItem="Iqf-tY-pFu" secondAttribute="trailing" constant="20" id="1ZK-8n-4nZ"/>
+                            <constraint firstItem="Tx7-WY-ECR" firstAttribute="leading" secondItem="ypz-0F-Oss" secondAttribute="leading" constant="20" id="1zu-hX-4az"/>
+                            <constraint firstItem="q1y-tV-L9c" firstAttribute="top" secondItem="Iqf-tY-pFu" secondAttribute="bottom" constant="8" id="5vi-So-kCB"/>
+                            <constraint firstItem="Iqf-tY-pFu" firstAttribute="leading" secondItem="ypz-0F-Oss" secondAttribute="leading" constant="20" id="88N-Is-Y6A"/>
+                            <constraint firstItem="ypz-0F-Oss" firstAttribute="trailing" secondItem="Tx7-WY-ECR" secondAttribute="trailing" constant="20" id="Fpn-GC-owa"/>
+                            <constraint firstItem="q1y-tV-L9c" firstAttribute="leading" secondItem="ypz-0F-Oss" secondAttribute="leading" id="Ja7-lZ-CyS"/>
+                            <constraint firstItem="ypz-0F-Oss" firstAttribute="bottom" secondItem="Tx7-WY-ECR" secondAttribute="bottom" constant="10" id="ROU-jQ-iR6"/>
+                            <constraint firstItem="Iqf-tY-pFu" firstAttribute="top" secondItem="ypz-0F-Oss" secondAttribute="top" constant="20" id="afy-fA-ADc"/>
+                            <constraint firstItem="Tx7-WY-ECR" firstAttribute="top" secondItem="q1y-tV-L9c" secondAttribute="bottom" constant="8" id="lYx-R0-Pbp"/>
+                            <constraint firstItem="q1y-tV-L9c" firstAttribute="trailing" secondItem="ypz-0F-Oss" secondAttribute="trailing" id="pLW-xo-AUm"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ypz-0F-Oss"/>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionLabel" destination="Tx7-WY-ECR" id="gfW-me-SMP"/>
+                        <outlet property="drinkName" destination="Iqf-tY-pFu" id="fF8-0y-FOx"/>
+                        <outlet property="imageView" destination="q1y-tV-L9c" id="BCa-gc-ep2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KAx-F4-6bL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="508.69565217391306" y="-627.45535714285711"/>
+        </scene>
         <!--Drinks-->
         <scene sceneID="pF4-4j-NGh">
             <objects>
@@ -56,6 +107,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Drinks" id="gET-ea-qbY">
+                        <barButtonItem key="leftBarButtonItem" image="randomIcon" id="974-3h-1ro">
+                            <connections>
+                                <segue destination="AYs-U6-MEe" kind="presentation" id="p4n-RU-isN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="filterButton" id="TBM-71-KaS">
                             <connections>
                                 <segue destination="o6J-4d-lLq" kind="show" id="yYG-qg-Cxu"/>
@@ -144,9 +200,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="backButton" width="15" height="13.5"/>
+        <image name="backButton" width="20" height="15.5"/>
         <image name="defaultIcon" width="242" height="256"/>
-        <image name="filterButton" width="15" height="15"/>
+        <image name="filterButton" width="25" height="25"/>
         <image name="filterOn" width="15" height="15"/>
+        <image name="randomIcon" width="60" height="60"/>
     </resources>
 </document>

@@ -122,8 +122,8 @@ extension DrinksTableViewController: FiltersTableViewControllerDelegate {
 private extension DrinksTableViewController {
     
     func getDrinksFromServer(for section: Int, with params: [[String : Any]]) {
-        guard params.count > section else { return }
         
+        guard params.count > section else { return }
         ServerManager().getDrinks(params: params[section], success: { (drinks) in
             self.drinksSections.append(drinks)
             self.sectionOnScreen.append(section)
