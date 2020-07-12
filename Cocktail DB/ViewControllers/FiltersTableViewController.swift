@@ -141,7 +141,6 @@ private extension FiltersTableViewController {
         let deselectFilter = deselectedFilters[indexPath.row]
         if selectedFilters.contains(deselectFilter), let index = selectedFilters.firstIndex(of: deselectFilter) {
             selectedFilters.remove(at: index)
-            selectedCells.append(indexPath)
         }
     }
 }
