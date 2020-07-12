@@ -16,6 +16,7 @@ class FiltersTableViewController: UITableViewController {
     
     var delegate: FiltersTableViewControllerDelegate?
     
+    var selectedCells = [IndexPath]()
     private var deselectedFilters = [String]()
     var selectedFilters = [String]()
     private var filters = [String]() {
@@ -48,6 +49,11 @@ class FiltersTableViewController: UITableViewController {
         if indexPath.row < filters.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: FilterTableViewCell.self), for: indexPath) as! FilterTableViewCell
             cell.filterName.text = filters[indexPath.row]
+            
+            if selectedCells.contains(indexPath) {
+                tableView.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+                selectRow(cell: cell, indexPath: indexPath)
+            }
             return cell
             
         } else { 
@@ -74,13 +80,7 @@ extension FiltersTableViewController {
             
         } else {
             let cell = tableView.cellForRow(at: indexPath) as! FilterTableViewCell
-            cell.checkbox.image = UIImage(named: "filterOff")
-            cell.filterName.textColor = .gray
-            
-            let deselectFilter = deselectedFilters[indexPath.row]
-            if selectedFilters.contains(deselectFilter), let index = selectedFilters.firstIndex(of: deselectFilter) {
-                selectedFilters.remove(at: index)
-            }
+            selectRow(cell: cell, indexPath: indexPath)
         }
     }
     
@@ -95,6 +95,9 @@ extension FiltersTableViewController {
             if !selectedFilters.contains(deselectFilter) {
                 selectedFilters.append(deselectFilter)
             }
+        }
+        if selectedCells.contains(indexPath), let index = selectedCells.firstIndex(of: indexPath) {
+            selectedCells.remove(at: index)
         }
     }
     
@@ -126,6 +129,20 @@ private extension FiltersTableViewController {
         let alert = UIAlertController(title: "Attention", message: "Select at least 1 item", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
         self.present(alert, animated: true)
+    }
+    
+    func selectRow(cell : FilterTableViewCell, indexPath: IndexPath) {
+        cell.checkbox.image = UIImage(named: "filterOff")
+        cell.filterName.textColor = .gray
+        
+        if !selectedCells.contains(indexPath) {
+            selectedCells.append(indexPath)
+        }
+        let deselectFilter = deselectedFilters[indexPath.row]
+        if selectedFilters.contains(deselectFilter), let index = selectedFilters.firstIndex(of: deselectFilter) {
+            selectedFilters.remove(at: index)
+            selectedCells.append(indexPath)
+        }
     }
 }
 

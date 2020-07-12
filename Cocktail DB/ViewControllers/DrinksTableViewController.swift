@@ -16,6 +16,7 @@ class DrinksTableViewController: UITableViewController {
     private var drinksSections = [[Drink]]()
     private var drinks: [Drink]?
     private var sectionOnScreen = [Int]()
+    private var selectedCells = [IndexPath]()
     
     private let heigthForRow: CGFloat = 134
     
@@ -82,6 +83,7 @@ extension DrinksTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? FiltersTableViewController {
             vc.delegate = self
+            vc.selectedCells = selectedCells
         }
     }
 }
@@ -107,6 +109,7 @@ extension DrinksTableViewController: FiltersTableViewControllerDelegate {
     func dismissFiltersTableViewController(controller: FiltersTableViewController) {
         
         paramsName = controller.selectedFilters
+        selectedCells = controller.selectedCells
         drinksSections.removeAll()
         sectionOnScreen.removeAll()
         params.removeAll()

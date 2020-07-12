@@ -114,7 +114,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="filterButton" id="TBM-71-KaS">
                             <connections>
-                                <segue destination="o6J-4d-lLq" kind="show" id="yYG-qg-Cxu"/>
+                                <segue destination="o6J-4d-lLq" kind="show" identifier="ShowFilters" id="yYG-qg-Cxu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
