@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import Network
 import AlamofireImage
 
 class DrinksTableViewController: UITableViewController {
     
+    private let networkMonitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "NetworkMonitor")
+    
     private var params = [[String : String]]()
     private var paramsName = [String]()
     private var drinksSections = [[Drink]]()
-    private var drinks: [Drink]?
     private var sectionOnScreen = [Int]()
     private var selectedCells = [IndexPath]()
     
@@ -24,6 +27,7 @@ class DrinksTableViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addPathUpdateHandler()
         getFiltersFromServer()
     }
     
@@ -96,8 +100,7 @@ extension DrinksTableViewController {
         
         guard !drinksSections.isEmpty else { return }
         let lastItemOnScreen = drinksSections[indexPath.section].count - 1
-        guard indexPath.row == lastItemOnScreen, !params.isEmpty, !sectionOnScreen.contains(indexPath.section + 1) else { return }
-        guard indexPath.section < params.count else { return }
+        guard indexPath.row == lastItemOnScreen, !params.isEmpty, !sectionOnScreen.contains(indexPath.section + 1), indexPath.section < params.count else { return }
         getDrinksFromServer(for: indexPath.section + 1, with: params)
     }
 }
@@ -144,4 +147,22 @@ private extension DrinksTableViewController {
             self.tableView.reloadData()
         }
     }
+    
+    func addPathUpdateHandler() {
+        
+        networkMonitor.pathUpdateHandler = { path in
+            guard !(path.status == .satisfied) else { return }
+            DispatchQueue.main.async {
+                
+                let alert = UIAlertController(title: "No Internet", message: "Check your internet connection", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Settings", style: .default, handler: { _ in
+                    guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+                    UIApplication.shared.open(url, options: [:])
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        networkMonitor.start(queue: queue)
+    }
+    
 }
